@@ -1,0 +1,10 @@
+.logo {
+  position: fixed;
+  left: 1rem;
+  opacity: 0.2;
+  z-index: 999;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
