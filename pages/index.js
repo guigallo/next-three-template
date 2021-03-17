@@ -1,11 +1,11 @@
-import dynamic from 'next/dynamic'
-
-const Three = dynamic(() => import('../scenes'), {
-  ssr: false,
-})
+import { MainScene } from '../scenes'
 
 const Index = () => {
-  return <Three />
+  return (
+    <div>
+      <MainScene />
+    </div>
+  )
 }
 
 export default Index

@@ -24,7 +24,7 @@ export default function Model(props) {
           material={nodes.floor.material}
           geometry={nodes.floor.geometry}
         >
-          <meshStandardMaterial color="lightgreen" />
+          <meshStandardMaterial color="gray" />
         </mesh>
         <mesh
           name="wall02"
