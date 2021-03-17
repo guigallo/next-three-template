@@ -10,9 +10,12 @@
     "lint": "eslint --fix"
   },
   "dependencies": {
+    "@react-three/drei": "^3.11.0",
     "next": "10.0.9",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-three-fiber": "^5.3.19",
+    "three": "^0.126.1"
   },
   "devDependencies": {
     "eslint": "^7.22.0",
