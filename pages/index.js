@@ -1,3 +1,4 @@
+import { Loader } from '@react-three/drei'
 import { Logo } from '../components'
 import { MainScene } from '../scenes'
 
@@ -6,6 +7,7 @@ const Index = () => {
     <div>
       <Logo />
       <MainScene />
+      <Loader />
     </div>
   )
 }
