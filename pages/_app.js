@@ -1,5 +1,5 @@
 import Canvas from '@/components/Canvas'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
   return (
