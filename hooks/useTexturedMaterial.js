@@ -1,8 +1,9 @@
-import { useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import * as THREE from 'three'
 import { useLoader } from '@react-three/fiber'
 
 const useTextureMaterial = ({
+  name,
   path = '',
   repeatX = 1,
   repeatY = 1,
@@ -15,7 +16,9 @@ const useTextureMaterial = ({
   ambientOcclusionPath,
   // roughness = 5,
   // roughnessPath,
+  side = THREE.DoubleSide,
 }) => {
+  const [fullLoaded, setFullLoaded] = useState(false)
   const [
     base,
     bump,
@@ -33,14 +36,18 @@ const useTextureMaterial = ({
   useEffect(() => {
     // ;[base, bump, normalMap, ao, rough].forEach((texture) => {
     ;[base, bump, ao].forEach((texture) => {
-      texture.wrapS = THREE.MirroredRepeatWrapping
-      texture.wrapT = THREE.MirroredRepeatWrapping
+      texture.wrapS = THREE.RepeatWrapping
+      texture.wrapT = THREE.RepeatWrapping
       texture.repeat.set(repeatX, repeatY)
     })
+    setFullLoaded(true)
   }, [repeatY, repeatX, base, bump, ao])
 
   const texturedMaterial = useRef(
     <meshPhysicalMaterial
+      wrapT={THREE.RepeatWrapping}
+      wrapS={THREE.RepeatWrapping}
+      name={name}
       attach="material"
       map={base}
       bumpScale={bumpScale}
@@ -52,12 +59,13 @@ const useTextureMaterial = ({
       // roughness={roughness}
       // roughnessMap={rough}
       // envMap={scene.background}
-      side={THREE.DoubleSide}
+      side={side}
       reflectivity={0.5}
       metalness={0}
     />
   ).current
 
+  if (!fullLoaded) return null
   return texturedMaterial
 }
 

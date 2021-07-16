@@ -1,3 +1,1 @@
-import NoSsr from './NoSsr'
-
-export default NoSsr
+export { default } from './NoSsr'

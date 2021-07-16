@@ -19,6 +19,7 @@ module.exports = {
     'public',
     '*.md',
     'yarn.lock',
+    '*.scss',
   ],
   parserOptions: {
     ecmaFeatures: {
