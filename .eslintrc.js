@@ -5,12 +5,21 @@ module.exports = {
     node: true,
   },
   extends: [
+    'eslint:recommended',
+    'plugin:json/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:jsx-a11y/recommended',
-    'standard',
   ],
-  ignorePatterns: ['node_modules/*', '.next/*', '.out/*', '!.prettierrc.js'],
+  ignorePatterns: [
+    'node_modules/*',
+    '.next/*',
+    '.out/*',
+    '!.prettierrc.js',
+    'public',
+    '*.md',
+    'yarn.lock',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,

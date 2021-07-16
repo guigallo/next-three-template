@@ -7,12 +7,13 @@ This template uses:
 `drei`: A growing collection of useful helpers and abstractions for react-three-fiber.
 
 ## TO DO
- - [ ] Include some state management
- - [ ] Missing on README
-	 - [ ] Eslint, prettier and husky
-	 - [ ] Blender folder
-	 - [ ] Generated jsx from glTF
-	 - [ ] Folder structure
+
+- [ ] Include some state management
+- [ ] Missing on README
+  - [ ] Eslint, prettier and husky
+  - [ ] Blender folder
+  - [ ] Generated jsx from glTF
+  - [ ] Folder structure
 
 ## How to use
 
@@ -25,4 +26,5 @@ yarn create next-app -e https://github.com/guigallo/next-three-template next-thr
 ```
 
 ## Reference
-Based on [Next.js](https://nextjs.org/)  [with-three-js](https://github.com/vercel/next.js/tree/master/examples/with-three-js) template.
+
+Based on [Next.js](https://nextjs.org/) [with-three-js](https://github.com/vercel/next.js/tree/master/examples/with-three-js) template.

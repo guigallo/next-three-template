@@ -8,6 +8,7 @@
     "start": "next start",
     "prepare": "husky install",
     "lint": "eslint --fix",
+    "lint-staged": "lint-staged",
     "format": "prettier --write --ignore-unknown ."
   },
   "dependencies": {
@@ -22,10 +23,13 @@
     "three-stdlib": "2.3.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "12.1.4",
+    "@commitlint/config-conventional": "12.1.4",
     "eslint": "7.30.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-json": "3.0.0",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.4.0",
@@ -33,6 +37,7 @@
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "husky": "7.0.1",
+    "lint-staged": "11.0.1",
     "next-transpile-modules": "8.0.0",
     "prettier": "2.3.2"
   }
