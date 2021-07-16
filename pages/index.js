@@ -1,12 +1,11 @@
 import { Loader } from '@react-three/drei'
-import { Logo } from '../components'
-import { MainScene } from '../scenes'
+import { Logo, Scene } from '../components'
 
 const Index = () => {
   return (
     <div>
       <Logo />
-      <MainScene />
+      <Scene />
       <Loader />
     </div>
   )
