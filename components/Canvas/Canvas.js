@@ -51,7 +51,7 @@ const Canvas = () => {
         <ambientLight />
         <PerspectiveCamera makeDefault position={[15, 15, 15]} />
         <Suspense fallback={null}>
-          <Environment background={false} preset="apartment" />
+          <Environment background preset="dawn" />
           <Floor />
         </Suspense>
 

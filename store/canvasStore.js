@@ -9,8 +9,18 @@ const useCanvasStore = create((set) => {
   const setState = (fn) => set(produce(fn))
 
   return {
+    show: false,
+    initialized: false,
     childrens: {},
+
     actions: {
+      init: () => {
+        setState((state) => {
+          state.initialized = true
+          state.show = true
+        })
+      },
+
       add: (children) => {
         validateKey(children)
 
