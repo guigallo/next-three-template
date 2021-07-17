@@ -19,7 +19,7 @@ const Index = () => {
       </CanvasChildren>
 
       <div className={styles['dev']}>
-        <button onClick={init}>Show</button>
+        {!initialized && <button onClick={init}>Show</button>}
         {initialized && (
           <button onClick={() => router.push('info')}>Info</button>
         )}

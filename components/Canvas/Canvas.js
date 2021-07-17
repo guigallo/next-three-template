@@ -1,7 +1,8 @@
 import { useEffect, Suspense } from 'react'
 import * as THREE from 'three'
-import { PerspectiveCamera, Environment, Loader } from '@react-three/drei'
+import { Environment, Loader } from '@react-three/drei'
 import { Canvas as CanvasFiber } from '@react-three/fiber'
+import { Physics, Debug, usePlane } from '@react-three/cannon'
 import { Perf } from 'r3f-perf'
 import { Leva } from 'leva'
 import useCanvasStore from '@/store/canvasStore'
@@ -9,11 +10,16 @@ import useTexturedMaterial from '@/hooks/useTexturedMaterial'
 import styles from './canvas.module.scss'
 
 const Floor = () => {
+  const args = [25, 25]
+  const rotation = [Math.PI * 1.5, 0, 0]
+
+  const [ref] = usePlane(() => ({ args, rotation }))
+
   const texturedMaterial = useTexturedMaterial({
     name: 'mat-floor',
     path: '/materials/stone-floor/',
-    repeatX: 10,
-    repeatY: 10,
+    repeatX: 7,
+    repeatY: 7,
     aoMapIntensity: 1,
     baseColorPath: 'Stone_Floor_003_COLOR.jpg',
     bumpScale: 0.2,
@@ -27,8 +33,8 @@ const Floor = () => {
   })
 
   return (
-    <mesh name="floor" rotation={[Math.PI * 1.5, 0, 0]}>
-      <planeGeometry args={[25, 25]} />
+    <mesh ref={ref} name="floor" rotation={rotation}>
+      <planeGeometry args={args} />
       {texturedMaterial}
     </mesh>
   )
@@ -46,16 +52,18 @@ const Canvas = () => {
       <Leva collapsed />
 
       <CanvasFiber className={styles.scene}>
-        <Perf position="top-left" />
+        <Physics>
+          <Debug color="black" scale={1.1}>
+            <Perf position="top-left" />
+            <ambientLight />
 
-        <ambientLight />
-        <PerspectiveCamera makeDefault position={[15, 15, 15]} />
-        <Suspense fallback={null}>
-          <Environment background preset="dawn" />
-          <Floor />
-        </Suspense>
-
-        {Object.keys(childrens).map((key) => childrens[key])}
+            <Suspense fallback={null}>
+              <Environment background preset="dawn" />
+              <Floor />
+              {Object.keys(childrens).map((key) => childrens[key])}
+            </Suspense>
+          </Debug>
+        </Physics>
       </CanvasFiber>
 
       <Loader />

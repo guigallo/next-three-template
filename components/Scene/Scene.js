@@ -1,19 +1,9 @@
-import { Suspense, useMemo, useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import { OrbitControls, useTexture } from '@react-three/drei'
-import { useLoader } from '@react-three/fiber'
-import { OBJLoader, MTLLoader } from 'three-stdlib'
+import { useTexture } from '@react-three/drei'
 import { useControls } from 'leva'
-
-const ObjMtl = ({ position = [0, 0, 0], objPath, mtlPath }) => {
-  const mtl = useLoader(MTLLoader, `/gltf/${mtlPath}`)
-  const obj = useLoader(OBJLoader, `/gltf/${objPath}`, (loader) => {
-    mtl.preload()
-    loader.setMaterials(mtl)
-  })
-
-  return <primitive position={position} object={obj} />
-}
+import Player from '@/components/Player'
+import PrimitiveObjMtl from '@/components/PrimitiveObjMtl'
 
 const PlaneObj = ({
   name = '',
@@ -60,15 +50,20 @@ const PlaneObj = ({
 
 function Scene() {
   return (
-    <Suspense fallback={null}>
-      <OrbitControls />
+    <>
+      <Player />
 
-      <ObjMtl
-        position={[0, -2.4, 0]}
-        objPath="Arquibanquina.obj"
-        mtlPath="Arquibanquina.mtl"
+      <group position={[0, -2.4, 0]}>
+        <PrimitiveObjMtl
+          translateColiders={{ x: 0, y: -2.4, z: 0 }}
+          objPath="Arquibanquina.obj"
+          mtlPath="Arquibanquina.mtl"
+        />
+      </group>
+      <PrimitiveObjMtl
+        objPath="Primeira_parede.obj"
+        mtlPath="Primeira_parede.mtl"
       />
-      <ObjMtl objPath="Primeira_parede.obj" mtlPath="Primeira_parede.mtl" />
 
       <PlaneObj
         name="8008 parede"
@@ -91,7 +86,7 @@ function Scene() {
         rotation={[0, 0.76, 0]}
         position={[7.44, 1.05, 1.86]}
       />
-    </Suspense>
+    </>
   )
 }
 
