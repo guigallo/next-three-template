@@ -8,7 +8,7 @@
     "start": "next start",
     "prepare": "husky install",
     "lint": "eslint --fix",
-    "stylelint": "stylelint **/*.scss",
+    "style-lint": "stylelint \"**/*.scss\"",
     "lint-staged": "lint-staged",
     "format": "prettier --write --ignore-unknown ."
   },
