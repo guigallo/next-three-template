@@ -65,6 +65,10 @@ function Scene() {
         mtlPath="Primeira_parede.mtl"
       />
 
+      <group scale={0.05} position={[0, 3, 0]}>
+        <PrimitiveObjMtl objPath="statue.obj" mtlPath="statue.mtl" />
+      </group>
+
       <PlaneObj
         name="8008 parede"
         mapPath="/images/8008.B_low.jpg"
