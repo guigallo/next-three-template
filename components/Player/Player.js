@@ -110,7 +110,7 @@ function Player({
     return () => {
       window.removeEventListener('mousemove', onMouseMove)
     }
-  }, [player.lockCursor])
+  }, [player.lockCursor, camera.rotation])
 
   /**
    * Pointer Lock
@@ -147,7 +147,7 @@ function Player({
       //   onPointerLockChange
       // )
     }
-  }, [gl.domElement])
+  }, [gl.domElement, setLockCursor])
 
   /**
    * Player movement and update camera
