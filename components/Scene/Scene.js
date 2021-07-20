@@ -67,10 +67,10 @@ function Scene() {
 
       <PlaneObj
         name="8008 parede"
-        mapPath="/images/8008.B.jpg"
-        alphaMapPath="/images/8008.B-alpha.jpg"
-        width={5504}
-        height={8622}
+        mapPath="/images/8008.B_low.jpg"
+        alphaMapPath="/images/8008.B-alpha_low.jpg"
+        width={1376}
+        height={2156}
         scale={0.28}
         rotation={[0, 1.57, 0]}
         position={[1.41, 2.04, 3.2]}
@@ -78,10 +78,10 @@ function Scene() {
 
       <PlaneObj
         name="8008 arquibanquina"
-        mapPath="/images/8008.B.jpg"
-        alphaMapPath="/images/8008.B-alpha.jpg"
-        width={5504}
-        height={8622}
+        mapPath="/images/8008.B_low.jpg"
+        alphaMapPath="/images/8008.B-alpha_low.jpg"
+        width={1376}
+        height={2156}
         scale={0.5}
         rotation={[0, 0.76, 0]}
         position={[7.44, 1.05, 1.86]}

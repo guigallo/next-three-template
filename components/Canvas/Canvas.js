@@ -1,10 +1,10 @@
-import { useEffect, Suspense } from 'react'
+import { useEffect } from 'react'
 import * as THREE from 'three'
 import { Environment, Loader } from '@react-three/drei'
 import { Canvas as CanvasFiber } from '@react-three/fiber'
 import { Physics, Debug, usePlane } from '@react-three/cannon'
 import { Perf } from 'r3f-perf'
-import { Leva } from 'leva'
+import { Leva, useControls } from 'leva'
 import useCanvasStore from '@/store/canvasStore'
 import useTexturedMaterial from '@/hooks/useTexturedMaterial'
 import styles from './canvas.module.scss'
@@ -40,11 +40,37 @@ const Floor = () => {
   )
 }
 
+const DebugWrapper = ({ children }) => {
+  const { debug } = useControls('Physics', { debug: false })
+  if (!debug) return children
+  return (
+    <Debug color="black" scale={1.1}>
+      {children}
+    </Debug>
+  )
+}
+
+const PerfWrapper = () => {
+  const { enabled } = useControls('Perf', { enabled: false })
+  if (!enabled) return null
+  return <Perf position="top-left" />
+}
+
+const DefaultScene = () => {
+  return (
+    <>
+      <Environment background preset="dawn" />
+      <Floor />
+      <ambientLight />
+    </>
+  )
+}
+
 const Canvas = () => {
   const { childrens } = useCanvasStore()
 
   useEffect(() => {
-    console.log('childrens changed')
+    console.log('canvas childrens changed')
   }, [childrens])
 
   return (
@@ -53,16 +79,12 @@ const Canvas = () => {
 
       <CanvasFiber className={styles.scene}>
         <Physics>
-          <Debug color="black" scale={1.1}>
-            <Perf position="top-left" />
-            <ambientLight />
+          <DebugWrapper>
+            <PerfWrapper />
 
-            <Suspense fallback={null}>
-              <Environment background preset="dawn" />
-              <Floor />
-              {Object.keys(childrens).map((key) => childrens[key])}
-            </Suspense>
-          </Debug>
+            <DefaultScene />
+            {Object.keys(childrens).map((key) => childrens[key])}
+          </DebugWrapper>
         </Physics>
       </CanvasFiber>
 
