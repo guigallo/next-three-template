@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import { useTexture } from '@react-three/drei'
+import { useTexture, useGLTF } from '@react-three/drei'
 import { useControls } from 'leva'
 import Player from '@/components/Player'
 import PrimitiveObjMtl from '@/components/PrimitiveObjMtl'
@@ -65,9 +65,11 @@ function Scene() {
         mtlPath="Primeira_parede.mtl"
       />
 
-      <group scale={0.05} position={[0, 3, 0]}>
-        <PrimitiveObjMtl objPath="statue.obj" mtlPath="statue.mtl" />
-      </group>
+      {/**
+        <group scale={0.05} position={[0, 3, 0]}>
+          <PrimitiveObjMtl objPath="statue.obj" mtlPath="statue.mtl" />
+        </group>
+      **/}
 
       <PlaneObj
         name="8008 parede"
@@ -90,7 +92,19 @@ function Scene() {
         rotation={[0, 0.76, 0]}
         position={[7.44, 1.05, 1.86]}
       />
+
+      <Glb />
     </>
+  )
+}
+
+const Glb = () => {
+  const { nodes } = useGLTF('/gltf/statue9-1.glb')
+
+  return (
+    <group position={[0, 0, 0]} scale={30}>
+      <primitive object={nodes.Sphere1} />
+    </group>
   )
 }
 
