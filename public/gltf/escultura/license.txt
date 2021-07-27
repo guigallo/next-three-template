@@ -1,0 +1,11 @@
+Model Information:
+* title:	Escultura Bia Doria
+* source:	https://sketchfab.com/3d-models/escultura-bia-doria-9f74aca970c84ea99d63e6615c6ef7e3
+* author:	Diego Velasco-De Armas (https://sketchfab.com/dvelasco)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Escultura Bia Doria" (https://sketchfab.com/3d-models/escultura-bia-doria-9f74aca970c84ea99d63e6615c6ef7e3) by Diego Velasco-De Armas (https://sketchfab.com/dvelasco) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

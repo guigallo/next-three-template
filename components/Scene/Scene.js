@@ -94,7 +94,21 @@ function Scene() {
       />
 
       <Glb />
+
+      <Glb2 />
     </>
+  )
+}
+
+const Glb2 = () => {
+  const { nodes } = useGLTF('/gltf/escultura/scene.gltf')
+
+  return (
+    <group position={[3, 1, -3]} scale={0.5}>
+      {Object.keys(nodes).map((key) => (
+        <primitive key={key} object={nodes[key]} />
+      ))}
+    </group>
   )
 }
 
