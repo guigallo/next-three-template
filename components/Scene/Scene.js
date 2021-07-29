@@ -94,6 +94,7 @@ function Scene() {
       />
 
       <Glb />
+      <GlbNew />
 
       <Glb2 />
     </>
@@ -105,9 +106,11 @@ const Glb2 = () => {
 
   return (
     <group position={[3, 1, -3]} scale={0.5}>
-      {Object.keys(nodes).map((key) => (
-        <primitive key={key} object={nodes[key]} />
-      ))}
+      {Object.keys(nodes).map((key) => {
+        const object = nodes[key]
+        if (object.type !== 'Mesh') return null
+        return <primitive key={key} object={object} />
+      })}
     </group>
   )
 }
@@ -116,8 +119,18 @@ const Glb = () => {
   const { nodes } = useGLTF('/gltf/statue9-1.glb')
 
   return (
-    <group position={[0, 0, 0]} scale={30}>
+    <group position={[-3, 0.2, -3]} scale={20}>
       <primitive object={nodes.Sphere1} />
+    </group>
+  )
+}
+
+const GlbNew = () => {
+  const { nodes } = useGLTF('/gltf/statue-15.glb')
+
+  return (
+    <group position={[-0, 1, -3]} scale={0.2}>
+      <primitive object={nodes.Capsule} />
     </group>
   )
 }
