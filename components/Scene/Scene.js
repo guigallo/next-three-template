@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import { useTexture } from '@react-three/drei'
+import { useTexture, useGLTF } from '@react-three/drei'
 import { useControls } from 'leva'
 import Player from '@/components/Player'
 import PrimitiveObjMtl from '@/components/PrimitiveObjMtl'
@@ -65,6 +65,12 @@ function Scene() {
         mtlPath="Primeira_parede.mtl"
       />
 
+      {/**
+        <group scale={0.05} position={[0, 3, 0]}>
+          <PrimitiveObjMtl objPath="statue.obj" mtlPath="statue.mtl" />
+        </group>
+      **/}
+
       <PlaneObj
         name="8008 parede"
         mapPath="/images/8008.B_low.jpg"
@@ -86,7 +92,46 @@ function Scene() {
         rotation={[0, 0.76, 0]}
         position={[7.44, 1.05, 1.86]}
       />
+
+      <Glb />
+      <GlbNew />
+
+      <Glb2 />
     </>
+  )
+}
+
+const Glb2 = () => {
+  const { nodes } = useGLTF('/gltf/escultura/scene.gltf')
+
+  return (
+    <group position={[3, 1, -3]} scale={0.5}>
+      {Object.keys(nodes).map((key) => {
+        const object = nodes[key]
+        if (object.type !== 'Mesh') return null
+        return <primitive key={key} object={object} />
+      })}
+    </group>
+  )
+}
+
+const Glb = () => {
+  const { nodes } = useGLTF('/gltf/statue9-1.glb')
+
+  return (
+    <group position={[-3, 0.2, -3]} scale={20}>
+      <primitive object={nodes.Sphere1} />
+    </group>
+  )
+}
+
+const GlbNew = () => {
+  const { nodes } = useGLTF('/gltf/statue-15.glb')
+
+  return (
+    <group position={[-0, 1, -3]} scale={0.2}>
+      <primitive object={nodes.Capsule} />
+    </group>
   )
 }
 
