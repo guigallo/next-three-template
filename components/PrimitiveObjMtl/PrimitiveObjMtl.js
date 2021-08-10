@@ -46,7 +46,7 @@ const PrimitiveObjMtl = ({
 
   useCompoundBody(() => ({ shapes }))
 
-  return <primitive object={obj} />
+  return <primitive castShadow receiveShadow object={obj} />
 }
 
 export default PrimitiveObjMtl

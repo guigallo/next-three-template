@@ -1,9 +1,10 @@
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import { useTexture, useGLTF } from '@react-three/drei'
+import { Environment, useTexture, useGLTF } from '@react-three/drei'
 import { useControls } from 'leva'
 import Player from '@/components/Player'
 import PrimitiveObjMtl from '@/components/PrimitiveObjMtl'
+import Floor from '@/components/Floor'
 
 const PlaneObj = ({
   name = '',
@@ -51,6 +52,11 @@ const PlaneObj = ({
 function Scene() {
   return (
     <>
+      <ambientLight intensity={0.2} />
+      <pointLight position={[10, 10, 10]} intensity={1} castShadow />
+      <Environment background preset="dawn" />
+      <Floor />
+
       <Player />
 
       <group position={[0, -2.4, 0]}>
@@ -119,7 +125,7 @@ const Glb = () => {
   const { nodes } = useGLTF('/gltf/statue9-1.glb')
 
   return (
-    <group position={[-3, 0.2, -3]} scale={20}>
+    <group receiveShadow castShadow position={[-3, 0.2, -3]} scale={20}>
       <primitive object={nodes.Sphere1} />
     </group>
   )

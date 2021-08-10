@@ -185,10 +185,15 @@ function Player({
     //   movement.jump ? 2 : currentVelocity.current[1],
     //   newVelocity.z
     // )
+
+    const velocityValues = Object.values(newVelocity)
+    const isMoving = velocityValues.some((velocity) => velocity !== 0)
+    isMoving ? api.wakeUp() : api.sleep()
+
     api.velocity.set(newVelocity.x, currentVelocity.current[1], newVelocity.z)
 
     if (movement.jump && state.camera.position.y <= radius + heightOffset) {
-      api.applyImpulse([0, 2.3, 0], [0, 0, 0])
+      api.applyImpulse([0, 0.5, 0], [0, 0, 0])
     }
   }, 0)
 
