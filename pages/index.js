@@ -15,7 +15,7 @@ const Index = () => {
       <Logo />
 
       <CanvasChildren>
-        <Scene key="scene" />
+        <Scene key="Scene" />
       </CanvasChildren>
 
       <div className={styles['dev']}>

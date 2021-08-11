@@ -1,10 +1,8 @@
 import { useMemo, useRef } from 'react'
 import * as THREE from 'three'
-import { Environment, useTexture, useGLTF } from '@react-three/drei'
+import { useTexture, useGLTF } from '@react-three/drei'
 import { useControls } from 'leva'
-import Player from '@/components/Player'
 import PrimitiveObjMtl from '@/components/PrimitiveObjMtl'
-import Floor from '@/components/Floor'
 
 const PlaneObj = ({
   name = '',
@@ -24,7 +22,7 @@ const PlaneObj = ({
     return [width / aspect, height / aspect]
   }, [width, height])
 
-  const { position, rotation, scale } = useControls(name, {
+  const { position, rotation, scale } = useControls(`plane img.${name}`, {
     position: initialPosition,
     rotation: initialRotation,
     scale: initialScale,
@@ -49,16 +47,43 @@ const PlaneObj = ({
   )
 }
 
+const Glb2 = () => {
+  const { nodes } = useGLTF('/gltf/escultura/scene.gltf')
+
+  return (
+    <group position={[3, 1, -3]} scale={0.5}>
+      {Object.keys(nodes).map((key) => {
+        const object = nodes[key]
+        if (object.type !== 'Mesh') return null
+        return <primitive key={key} object={object} />
+      })}
+    </group>
+  )
+}
+
+const Glb = () => {
+  const { nodes } = useGLTF('/gltf/statue9-1.glb')
+
+  return (
+    <group position={[-3, 0.2, -3]} scale={20}>
+      <primitive object={nodes.Sphere1} />
+    </group>
+  )
+}
+
+const GlbNew = () => {
+  const { nodes } = useGLTF('/gltf/statue-15.glb')
+
+  return (
+    <group position={[-0, 1, -3]} scale={0.2}>
+      <primitive object={nodes.Capsule} />
+    </group>
+  )
+}
+
 function Scene() {
   return (
-    <>
-      <ambientLight intensity={0.2} />
-      <pointLight position={[10, 10, 10]} intensity={1} castShadow />
-      <Environment background preset="dawn" />
-      <Floor />
-
-      <Player />
-
+    <group name="SceneSample">
       <group position={[0, -2.4, 0]}>
         <PrimitiveObjMtl
           translateColiders={{ x: 0, y: -2.4, z: 0 }}
@@ -101,42 +126,7 @@ function Scene() {
 
       <Glb />
       <GlbNew />
-
       <Glb2 />
-    </>
-  )
-}
-
-const Glb2 = () => {
-  const { nodes } = useGLTF('/gltf/escultura/scene.gltf')
-
-  return (
-    <group position={[3, 1, -3]} scale={0.5}>
-      {Object.keys(nodes).map((key) => {
-        const object = nodes[key]
-        if (object.type !== 'Mesh') return null
-        return <primitive key={key} object={object} />
-      })}
-    </group>
-  )
-}
-
-const Glb = () => {
-  const { nodes } = useGLTF('/gltf/statue9-1.glb')
-
-  return (
-    <group receiveShadow castShadow position={[-3, 0.2, -3]} scale={20}>
-      <primitive object={nodes.Sphere1} />
-    </group>
-  )
-}
-
-const GlbNew = () => {
-  const { nodes } = useGLTF('/gltf/statue-15.glb')
-
-  return (
-    <group position={[-0, 1, -3]} scale={0.2}>
-      <primitive object={nodes.Capsule} />
     </group>
   )
 }

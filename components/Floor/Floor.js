@@ -101,7 +101,7 @@ function Heightfield(props) {
   // })
 
   return (
-    <mesh ref={ref} castShadow receiveShadow {...rest}>
+    <mesh ref={ref} {...rest}>
       {/** texturedMaterial **/}
       <meshPhysicalMaterial color="#c2b280" />
       <HeightmapGeometry heights={heights} elementSize={elementSize} />

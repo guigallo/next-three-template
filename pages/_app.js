@@ -1,3 +1,5 @@
+import 'scripts/wdyr'
+
 import Canvas from '@/components/Canvas'
 import useCanvasStore from '@/store/canvasStore'
 import '../styles/globals.scss'
