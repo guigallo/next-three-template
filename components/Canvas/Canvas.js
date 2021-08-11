@@ -10,9 +10,13 @@ import useCanvasStore from '@/store/canvasStore'
 import styles from './canvas.module.scss'
 
 const DebugWrapper = ({ children }) => {
-  const { debug } = useControls('Developer', {
-    debug: { value: false, label: 'physics' },
-  })
+  const { debug } = useControls(
+    'Developer',
+    {
+      debug: { value: false, label: 'physics' },
+    },
+    { collapsed: true }
+  )
 
   if (!debug) return children
   return (
@@ -23,9 +27,13 @@ const DebugWrapper = ({ children }) => {
 }
 
 const PerfWrapper = () => {
-  const { enabled } = useControls('Developer', {
-    enabled: { value: false, label: 'show perf' },
-  })
+  const { enabled } = useControls(
+    'Developer',
+    {
+      enabled: { value: false, label: 'show perf' },
+    },
+    { collapsed: true }
+  )
 
   if (!enabled) return null
   return <Perf position="top-left" />
@@ -34,10 +42,33 @@ const PerfWrapper = () => {
 const Canvas = () => {
   const { childrens } = useCanvasStore()
 
-  const { showFps, showOrbit } = useControls('Developer', {
-    showFps: { value: false, label: 'show fps' },
-    showOrbit: { value: false, label: 'orbit controls' },
-  })
+  const { showFps, showOrbit } = useControls(
+    'Developer',
+    {
+      showFps: { value: false, label: 'show fps' },
+      showOrbit: { value: false, label: 'orbit controls' },
+    },
+    { collapsed: true }
+  )
+
+  useControls('Light', {}, { collapsed: true })
+
+  const { ambientLightIntensity } = useControls(
+    'Light.Ambient Light',
+    {
+      ambientLightIntensity: { label: 'intensity', value: 1 },
+    },
+    { collapsed: true }
+  )
+
+  const { directionalLightIntensity } = useControls(
+    'Light.Directional Light',
+    {
+      directionalLightPosition: { label: 'position', value: [10, 10, 10] },
+      directionalLightIntensity: { label: 'intensity', value: 1 },
+    },
+    { collapsed: true }
+  )
 
   useEffect(() => {
     console.log('canvas childrens changed')
@@ -54,8 +85,11 @@ const Canvas = () => {
             <PerfWrapper />
 
             <group name="DefaultScene">
-              <ambientLight intensity={0.2} />
-              <directionalLight position={[10, 10, 10]} intensity={1} />
+              <ambientLight intensity={ambientLightIntensity} />
+              <directionalLight
+                position={[10, 10, 10]}
+                intensity={directionalLightIntensity}
+              />
               <Environment background preset="dawn" />
               <Floor />
               {showOrbit ? <OrbitControls /> : <Player />}

@@ -22,11 +22,17 @@ const PlaneObj = ({
     return [width / aspect, height / aspect]
   }, [width, height])
 
-  const { position, rotation, scale } = useControls(`plane img.${name}`, {
-    position: initialPosition,
-    rotation: initialRotation,
-    scale: initialScale,
-  })
+  useControls('plane img', {}, { collapsed: true })
+
+  const { position, rotation, scale } = useControls(
+    `plane img.${name}`,
+    {
+      position: initialPosition,
+      rotation: initialRotation,
+      scale: initialScale,
+    },
+    { collapsed: true }
+  )
 
   return (
     <mesh
