@@ -13,9 +13,11 @@
     "format": "prettier --write --ignore-unknown ."
   },
   "dependencies": {
+    "@react-spring/web": "9.2.4",
     "@react-three/cannon": "2.5.0",
     "@react-three/drei": "7.1.2",
     "@react-three/fiber": "7.0.5",
+    "@use-gesture/react": "10.0.0-beta.22",
     "@welldone-software/why-did-you-render": "6.2.0",
     "immer": "9.0.5",
     "leva": "0.9.13",
